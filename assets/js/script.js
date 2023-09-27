@@ -3,6 +3,7 @@ const slot_list_1 = document.getElementById("slot_list_1");
 const slot_list_2 = document.getElementById("slot_list_2");
 const slot_list_3 = document.getElementById("slot_list_3");
 const win_link="https://www.google.com";
+
 const options = [
     {
         id: 1,
@@ -105,6 +106,12 @@ const options = [
         img: "assets/img/unicorn.png",
         gif: "assets/img/unicorn.gif",
         music: "assets/music/horse.mp3"
+    },
+    {
+        id: 18,
+        img: "assets/img/teddy_bear.png",
+        gif: "assets/img/teddy_bear.gif",
+        music: "assets/music/teddy_bear.mp3"
     }
 ];
 let inner_html="";
@@ -123,13 +130,17 @@ slot_list_3.innerHTML=inner_html;
 const sound = new Audio("assets/music/slot_machine_wheel.wav");
 const ding = new Audio("assets/music/ding.wav");
 $(document).ready(function(){
-    $("#spin_btn").click(function(){
+    $("#spin_btn,.slot_machine_handle").click(function(){
+        $("#spin_btn,.slot_machine_handle").attr("disabled","disabled");
+        $(".slot_machine").addClass("active");
+        setTimeout(()=>{
+            $(".slot_machine").removeClass("active");
+        },2000);
         sound.play();
         const value_arr=[];
-        $("#slot_machine .slot_list").playSpin({
-            time: 2000,
+        $("#slot_listView .slot_list").playSpin({
             stopSeq: 'leftToRight',
-            endNum: [5, 5, 5],
+            endNum: [13,13,13],
             onEnd: function(num) {
                 ding.play();
                 value_arr.push(num);
@@ -152,7 +163,9 @@ $(document).ready(function(){
                 } else {
                     console.log(options[targetValue]);
                 }
+                $("#spin_btn,.slot_machine_handle").removeAttr("disabled");
             }
         });
+
     });
 })

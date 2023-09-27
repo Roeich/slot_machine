@@ -1,65 +1,161 @@
-*{
+* {
     box-sizing: border-box;
 }
-body{
+
+body {
     margin: 0px;
 }
-.container{
+
+.container {
     max-width: 600px;
     padding: 60px 20px;
     margin: auto;
 }
-.slot_machine_wrapper{
+
+.slot_machine {
     position: relative;
 }
-.slot_machine_wrapper::before{
-    content:"";
+
+.slot_machine::before {
+    content: "";
     display: block;
+    height: 0px;
+    width: 100%;
+    padding-bottom: 100%;
+    background-image: url("../img/slot_machine.svg");
+    background-image: url("../img/slot_machine_2.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.slot_machine::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 61.5%;
+    left: 44.9%;
+    height: 0px;
+    width: 70%;
+    padding-bottom: 50.5%;
+    background-image: url("../img/slot_machine_overlay.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    transform: translate(-50%, -50%);
+}
+
+.slot_listView_wrapper {
+    position: absolute;
+    top: 56%;
+    left: 50%;
+    width: 64%;
+    transform: translate(-58%, -50%);
+}
+
+.slot_listView_wrapper::before {
+    content: "";
+    display: block;
+    width: 100%;
     height: 0px;
     padding-bottom: 33.33%;
 }
-.slot_machine{
+
+.slot_listView{
     position: absolute;
-    top:0px;
+    top: 0px;
     left: 0px;
     width: 100%;
     height: 100%;
-    display:flex;
+    display: flex;
     overflow: hidden;
 }
-.slot_list{
+
+.slot_list {
     list-style: none;
     padding-left: 0px;
     position: relative;
     width: 33.33%;
-}
-.slot_itemImg{
-    max-width: 100%;
-}
-.spin_btn{
-    border: 1px solid gray;
-    padding: 8px 16px;
-    border-radius: 3px;
+    margin: 0px;
 }
 
-#prize_previewContainer{
+.slot_itemImg {
+    max-width: 100%;
+}
+
+.slot_machine_light {
+    display: block;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 23%;
+    background-image: url("../img/light.svg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+.slot_machine.active .slot_machine_light {
+    background-image: url("../img/light.gif");
+}
+.slot_machine_handle {
+    display: block;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    height: 100%;
+    width: 18.1%;
+    background-image: url("../img/handle.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+}
+.slot_machine.active .slot_machine_handle {
+    background-image: url("../img/handle.gif");
+}
+
+.spin_btn {
+    border: 6px solid #9caab0;
+    padding: 8px;
+    border-radius: 3px;
+    width:80px;
+    height: 80px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background-color: red;
+    color:white;
+    box-shadow: inset -2px -2px 5px black;
+    cursor: pointer;
+    font-weight: 600;
+    margin-left: auto;
+}
+.spin_btn:active{
+    box-shadow: inset 2px 2px 5px black;
+}
+.slot_machine .disabled{
+    pointer-events: none;
+}
+
+#prize_previewContainer {
     position: fixed;
     display: none;
     z-index: 10000;
-    top:0px;
+    top: 0px;
     left: 0px;
     width: 100%;
     height: 100%;
     background-color: white;
 }
-#prize_preview{
+
+#prize_preview {
     width: 100%;
     height: 100%;
     padding: 30px;
     display: grid;
     place-items: center;
 }
-#prize_preview img{
+
+#prize_preview img {
     width: 400px;
     max-width: 100%;
 }
